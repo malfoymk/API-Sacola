@@ -1,4 +1,4 @@
-package sacola.example.sacola;
+package sacola.api.sacola;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
