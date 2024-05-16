@@ -1,5 +1,5 @@
 package sacola.api.sacola.security;
 
-public class UserSecurity {
+public class SecurityConfig {
     
 }
