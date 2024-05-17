@@ -1,6 +1,8 @@
 package sacola.api.sacola.model;
 
 
+import org.springframework.data.relational.core.sql.In;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,15 +27,15 @@ public class User {
     
     private String name;
     private String password;
+    private String address;
     
     
-    
-    public User(Long id,String name, String email, String password) {
+    public User(Long id,String name, String email, String password, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-
+        this.address = address;
     }
 
     public User() {
@@ -67,5 +69,14 @@ public class User {
     public String setPassword() {
         return password;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String setAddress() {
+        return address;
+    }
+    
     
 }
