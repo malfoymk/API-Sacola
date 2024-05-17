@@ -27,15 +27,15 @@ public class User {
     
     private String name;
     private String password;
-    private String address;
+    private Integer number;
     
     
-    public User(Long id,String name, String email, String password, String address) {
+    public User(Long id,String name, String email, String password, Integer number) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.address = address;
+        this.number = number;
     }
 
     public User() {
@@ -70,12 +70,12 @@ public class User {
         return password;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getNumber() {
+        return number;
     }
 
-    public String setAddress() {
-        return address;
+    public Integer setNumber() {
+        return number;
     }
     
     
