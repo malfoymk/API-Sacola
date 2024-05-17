@@ -25,15 +25,15 @@ public class User {
     
     private String name;
     private String password;
-    private String address;
     
     
-    public User(Long id,String name, String email, String password, String address) {
+    
+    public User(Long id,String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.address = address;
+
     }
 
     public User() {
@@ -66,14 +66,6 @@ public class User {
 
     public String setPassword() {
         return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String setAddress() {
-        return address;
     }
     
 }
