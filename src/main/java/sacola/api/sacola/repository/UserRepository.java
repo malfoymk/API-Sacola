@@ -7,7 +7,7 @@ import sacola.api.sacola.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+    User findByName(String name);
     User findByEmail(String email);
     User findByCpf(String cpf);
 }
