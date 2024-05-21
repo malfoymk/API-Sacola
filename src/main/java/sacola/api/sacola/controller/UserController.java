@@ -3,17 +3,16 @@ package sacola.api.sacola.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import sacola.api.sacola.model.User;
 import sacola.api.sacola.service.UserDetailsService;
 
-@Api(tags = "1.End Points de Usuário")
+@Tag(name = "1.End Points de Usuário")
 @RestController
 @RequestMapping("/sacola/user")
 public class UserController {
@@ -35,15 +34,15 @@ public class UserController {
         newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
-        newUser.setCpf(user.getCpf());  // Set CPF to new user
-        newUser.setNumber(user.getNumber());  // Set number to new user
+        newUser.setCpf(user.getCpf());
+        newUser.setNumber(user.getNumber());
 
         userDetailsService.save(newUser);
 
         return ResponseEntity.ok().body("Usuário cadastrado com sucesso");
     }
 
-    @GetMapping("/login") 
+    @PostMapping("/login")
     public ResponseEntity<String> login(@Validated @RequestBody User user) {
         User foundUser = userDetailsService.findByEmail(user.getEmail());
         if (foundUser == null) {
