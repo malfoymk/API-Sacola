@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("me.project.todo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("sacola.api.sacola.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
