@@ -22,7 +22,7 @@ public class UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     
-    public User loadUserByCpf(String cpf) throws CpfNotFoundException {
+    public User findByCpf(String cpf) throws CpfNotFoundException {
         User user = userRepository.findByCpf(cpf);
         if (user == null) {
             throw new CpfNotFoundException("CPF não encontrado");

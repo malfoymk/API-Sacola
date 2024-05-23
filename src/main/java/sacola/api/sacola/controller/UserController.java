@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import sacola.api.sacola.exception.CpfNotFoundException;
 import sacola.api.sacola.model.User;
 import sacola.api.sacola.service.UserDetailsService;
 
@@ -22,11 +23,13 @@ public class UserController {
 
     @PostMapping("/sing-up")
     public ResponseEntity<String> register(@Validated @RequestBody User user) {
-        if (userDetailsService.findByCpf(user.getCpf()) != null) {
+        try {
+            if (userDetailsService.findByCpf(user.getCpf()) != null) {
             return ResponseEntity.badRequest().body("CPF já cadastrado");
         }
+    } catch (CpfNotFoundException e) {
 
-        if (userDetailsService.findByEmail(user.getEmail()) != null) {
+    }   if (userDetailsService.findByEmail(user.getEmail()) != null) {
             return ResponseEntity.badRequest().body("Email já cadastrado");
         }
 
