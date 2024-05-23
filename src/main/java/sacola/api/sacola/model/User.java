@@ -22,14 +22,16 @@ public class User {
     private String password;
     private Integer number;
     private String cpf;
+    private String endereco;
     
-    public User(Long id, String name, String email, String password, Integer number, String cpf) {
+    public User(Long id, String name, String email, String password, Integer number, String cpf, String endereco) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.number = number;
         setCpf(cpf);  // Utilize o setter para validar o CPF
+        setEndereco(endereco);  // Utilize o setter para validar o endereço
     }
 
     public User() {
@@ -82,4 +84,15 @@ public class User {
         }
         this.cpf = cpf;
     }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        if (!Address.isValidAddress(endereco)) {
+            throw new IllegalArgumentException("Endereço inválido");
+        }
+        this.endereco = endereco;
+}
 }

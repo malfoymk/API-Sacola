@@ -128,4 +128,8 @@ public class Address {
         }
         return false;
     }
+    public static boolean isValidAddress(String endereco) {
+        return endereco != null && !endereco.trim().isEmpty();
+    }
+    
 }
