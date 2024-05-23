@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
+
 import java.util.regex.Matcher;
 
 public class Address {
@@ -103,6 +104,7 @@ public class Address {
         return matcher.matches();
     }
 
+    @SuppressWarnings("deprecation")
     private boolean isCepValidWithApi(String cep) {
         try {
             String url = "https://viacep.com.br/ws/" + cep.replace("-", "") + "/json/";
