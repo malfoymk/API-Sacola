@@ -51,10 +51,16 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        throw new UnsupportedOperationException("O email já está cadastrado");
     }
 
     public void setEmail(String email) {
+        if (email == null || email.toString().isEmpty()) {
+            throw new IllegalArgumentException("O email não pode ser nulo ou vazio");
+        }
+        if (!email.contains("@")) {
+           throw new IllegalArgumentException("O email não é válido");
+       }
         this.email = email;
     }
 
@@ -63,6 +69,12 @@ public class User {
     }
 
     public void setPassword(String password) {
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("A senha não pode ser nula ou vazia");
+        }
+        if (!password.matches(".*[@!#&*%$].*")) {
+            throw new IllegalArgumentException("A senha deve conter pelo menos um dos seguintes caracteres especiais: '@', '!', '#', '&', '*', '%', '$'");
+        }
         this.password = password;
     }
 
@@ -81,6 +93,9 @@ public class User {
     public void setCpf(String cpf) {
         if (!CPFValidator.isValidCPF(cpf)) {
             throw new IllegalArgumentException("CPF inválido");
+        }
+        if (cpf == null || cpf.isEmpty()) {
+            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
         }
         this.cpf = cpf;
     }
