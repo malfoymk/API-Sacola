@@ -21,7 +21,11 @@ public class UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-  
+
+    public User findByCpf(String cpf) {
+        return userRepository.findByCpf(cpf);
+    }
+
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
