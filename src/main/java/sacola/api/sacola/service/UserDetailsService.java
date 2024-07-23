@@ -15,7 +15,7 @@ import sacola.api.sacola.exception.CpfNotFoundException;
 
 @Service
 public class UserDetailsService {
-    
+
     private final Deque<AccountOperation> operationHistory = new LinkedList<>();
     private static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
 
@@ -34,10 +34,6 @@ public class UserDetailsService {
         userRepository.save(user);
     }
 
-    public User findByCpf(String cpf) {
-        return userRepository.findByCpf(cpf);
-    }  
-
     public User loadUserByCpf(String cpf) throws CpfNotFoundException {
         User user = userRepository.findByCpf(cpf);
         if (user == null) {
@@ -46,4 +42,3 @@ public class UserDetailsService {
         return user;
     }
 }
-
