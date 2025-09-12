@@ -20,7 +20,8 @@ public class Address {
     private String numero;
     private String complemento;
 
-    public Address(String cep, String rua, String bairro, String cidade, String estado, String numero, String complemento) {
+    public Address(String cep, String rua, String bairro, String cidade, String estado, String numero,
+            String complemento) {
         if (!isValidCep(cep) || !isCepValidWithApi(cep)) {
             throw new IllegalArgumentException("CEP inválido");
         }
@@ -104,7 +105,6 @@ public class Address {
         return matcher.matches();
     }
 
-    @SuppressWarnings("deprecation")
     private boolean isCepValidWithApi(String cep) {
         try {
             String url = "https://viacep.com.br/ws/" + cep.replace("-", "") + "/json/";
@@ -130,8 +130,9 @@ public class Address {
         }
         return false;
     }
+
     public static boolean isValidAddress(String endereco) {
         return endereco != null && !endereco.trim().isEmpty();
     }
-    
+
 }

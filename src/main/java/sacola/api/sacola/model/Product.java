@@ -1,4 +1,5 @@
 package sacola.api.sacola.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @Data
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @NoArgsConstructor
 
 public class Product {
@@ -25,5 +26,5 @@ public class Product {
     private Boolean disponivel = true;
     @ManyToOne
     @JsonIgnore
-    private Restaurante restaurante;
+    private Loja Loja;
 }
