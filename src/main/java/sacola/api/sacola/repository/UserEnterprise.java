@@ -2,16 +2,17 @@ package sacola.api.sacola.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sacola.api.sacola.model.Loja;
+
 import java.util.List;
 import java.util.Optional;
-import sacola.api.sacola.model.User;
 
 @Repository
-public interface UserEnterprise extends JpaRepository<User, Long> {
-
-    List<User> findByName(String name);
-
-    Optional<User> findByEmail(String email);
-
-    Optional<User> findByCnpj(String cnpj);
+public interface UserEnterprise extends JpaRepository<Loja, Long> {
+    
+    Optional<Loja> findByCnpj(String cnpj);
+    Optional<Loja> findByNome(String nome);
+    boolean existsByCnpj(String cnpj);
+    boolean existsByNome(String nome);
+    List<Loja> findByAtivaTrue();
 }

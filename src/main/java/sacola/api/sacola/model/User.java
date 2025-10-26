@@ -1,15 +1,16 @@
 package sacola.api.sacola.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.*;
 import lombok.Setter;
 
-@Entity
-public class User {
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Entity
+public class User implements UserDetails {
+
+    
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +52,7 @@ public class User {
     }
 
     public String getEmail() {
-        throw new UnsupportedOperationException("O email já está cadastrado");
+         return email;
     }
 
     public void setEmail(String email) {
@@ -68,6 +69,13 @@ public class User {
         return password;
     }
 
+    @Transient
+    private transient PasswordEncoder passwordEncoder;
+
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
+        this.passwordEncoder = passwordEncoder;
+    }
+
     public void setPassword(String password) {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("A senha não pode ser nula ou vazia");
@@ -75,7 +83,16 @@ public class User {
         if (!password.matches(".*[@!#&*%$].*")) {
             throw new IllegalArgumentException("A senha deve conter pelo menos um dos seguintes caracteres especiais: '@', '!', '#', '&', '*', '%', '$'");
         }
-        this.password = password;
+
+        if (passwordEncoder != null) {
+            this.password = passwordEncoder.encode(password);
+        } else {
+            throw new IllegalStateException("PasswordEncoder não foi configurado devidamente!");
+        }
+    }
+
+    public boolean checkPassword(String rawPassword, PasswordEncoder encoder){
+        return encoder.matches(rawPassword, this.password);
     }
 
     public Integer getNumber() {
